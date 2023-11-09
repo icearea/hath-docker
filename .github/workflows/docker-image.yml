@@ -1,8 +1,8 @@
-name: Act on release created
+name: On release published
 
 on:
   release:
-    types: [created]
+    types: [published]
     
 env:
   HATH_VERSION: 1.6.2

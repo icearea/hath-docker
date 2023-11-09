@@ -1,11 +1,8 @@
-name: Docker Image CI
+name: Act on release created
 
 on:
-  push:
-    branches:    
-      - releases
-    tags:        
-      - v*
+  release:
+    types: [created]
     
 env:
   HATH_VERSION: 1.6.2

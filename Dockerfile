@@ -1,12 +1,14 @@
 FROM amazoncorretto:8u392-alpine3.18-jre
 LABEL MAINTAINER="cloverdefa"
 
-ARG HATH_VERSION
+ARG HATH_VERSION 
+ARG HATH_CHECKSUM
 
 WORKDIR /opt/hath
 
 RUN wget -O /tmp/hath-$HATH_VERSION.zip \
     https://repo.e-hentai.org/hath/HentaiAtHome_$HATH_VERSION.zip \
+	&& echo -n "$HATH_CHECKSUM  /tmp/hath-$HATH_VERSION.zip" | sha256sum -c \
     && unzip /tmp/hath-$HATH_VERSION.zip -d /opt/hath \
     && rm /opt/hath/autostartgui.bat HentaiAtHomeGUI.jar \
     && rm /tmp/hath-$HATH_VERSION.zip

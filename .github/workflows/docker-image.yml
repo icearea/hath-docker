@@ -3,7 +3,7 @@ name: Docker Image CI
 on:
   push:
     branches:
-      - 'releases/**'
+      - main
     
 env:
   HATH_VERSION: 1.6.2

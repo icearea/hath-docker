@@ -1,8 +1,11 @@
-name: On release published
+name: On push release tag
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+     - releases
+    tags:
+      - '*'
     
 env:
   HATH_VERSION: 1.6.2

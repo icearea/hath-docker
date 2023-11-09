@@ -1,9 +1,9 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches:
-      - 'releases/**'
+  release:
+    types:
+      - published
     
 env:
   HATH_VERSION: 1.6.2

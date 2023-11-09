@@ -5,13 +5,11 @@ ARG HATH_VERSION
 
 WORKDIR /opt/hath
 
-RUN apk add --no-cache --update --virtual build-hath wget unzip \
-    && wget -O /tmp/hath-$HATH_VERSION.zip \
+RUN wget -O /tmp/hath-$HATH_VERSION.zip \
     https://repo.e-hentai.org/hath/HentaiAtHome_$HATH_VERSION.zip \
     && unzip /tmp/hath-$HATH_VERSION.zip -d /opt/hath \
     && rm /opt/hath/autostartgui.bat HentaiAtHomeGUI.jar \
-    && rm /tmp/hath-$HATH_VERSION.zip \
-    && apk del build-hath
+    && rm /tmp/hath-$HATH_VERSION.zip
 
 ADD start.sh /opt/hath/
 

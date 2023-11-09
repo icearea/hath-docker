@@ -2,8 +2,10 @@ name: Docker Image CI
 
 on:
   push:
-    branches:
-      - 'main'
+    branches:    
+      - releases
+    tags:        
+      - v*
     
 env:
   HATH_VERSION: 1.6.2
@@ -31,7 +33,10 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}, ${{ env.DOCKERHUB_USERNAME }}/hath:latest
+          tags: |
+            ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}
+            ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}.${{ github.ref_name }}
+            ${{ env.DOCKERHUB_USERNAME }}/hath:latest
           build-args: |
             HATH_VERSION=${{ env.HATH_VERSION }}
             HATH_CHECKSUM=${{ env.HATH_CHECKSUM }}

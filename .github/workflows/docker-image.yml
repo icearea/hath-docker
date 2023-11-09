@@ -4,8 +4,6 @@ on:
   push:
     branches:
      - releases
-    tags:
-      - '*'
     
 env:
   HATH_VERSION: 1.6.2

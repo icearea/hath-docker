@@ -41,7 +41,8 @@ then
     adduser -DH -s /sbin/nologin -u "${PUID}" hath -G hath
   fi
   
-  su -s /bin/ash -c 'echo "start with $(id -nu) $(id -u):$(id -g)"; exec $HATH_CMD' hath
+  su -s /bin/ash -c 'echo "start with $(id -nu) $(id -u):$(id -g)"' hath
+  su -s /bin/ash -c "exec $HATH_CMD" hath
 else
   echo "start with $(id -u):$(id -g)"
   exec $HATH_CMD

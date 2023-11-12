@@ -2,8 +2,10 @@ name: On push to main
 
 on:
   push:
-    branches:
-     - main
+    paths:
+      - "start.sh"
+      - "Dockerfile"
+      - ".github/workflows/release-docker-image.yaml"
     
 env:
   HATH_VERSION: 1.6.2

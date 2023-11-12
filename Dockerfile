@@ -24,4 +24,6 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
 
 VOLUME ["/hath/cache", "/hath/data", "/hath/download", "/hath/log", "/hath/tmp"]
 
+ENV HATH_OPT ""
+
 CMD ["/opt/hath/start.sh"]

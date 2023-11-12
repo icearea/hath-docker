@@ -24,6 +24,13 @@ if [ ! -f /hath/data/client_login ]; then
   echo -n "${HATH_CLIENT_ID}-${HATH_CLIENT_KEY}" > /hath/data/client_login
 fi
 
+HATH_CMD="java -server -jar /opt/hath/HentaiAtHome.jar \
+    --cache-dir=/hath/cache \
+    --data-dir=/hath/data \
+    --download-dir=/hath/download \
+    --log-dir=/hath/log \
+    --temp-dir=/hath/tmp $HATH_OPT"
+
 if [ "$(id -u)" -eq 0 ]
 then
   if [ "$(id -u hath)" -ne "$PUID" ] || [ "$(id -g hath)" -ne "$PGID" ]
@@ -34,20 +41,8 @@ then
     adduser -DH -s /sbin/nologin -u "${PUID}" hath -G hath
   fi
   
-  su -s /bin/ash -c 'echo "start with $(id -nu) $(id -u):$(id -g)"' hath
-  su -s /bin/ash -c 'exec java -server -jar HentaiAtHome.jar \
-    --cache-dir=/hath/cache \
-    --data-dir=/hath/data \
-    --download-dir=/hath/download \
-    --log-dir=/hath/log \
-    --temp-dir=/hath/tmp' hath
+  su -s /bin/ash -c 'echo "start with $(id -nu) $(id -u):$(id -g)"; exec $HATH_CMD' hath
 else
   echo "start with $(id -u):$(id -g)"
-  
-  exec java -jar /opt/hath/HentaiAtHome.jar \
-    --cache-dir=/hath/cache \
-    --data-dir=/hath/data \
-    --download-dir=/hath/download \
-    --log-dir=/hath/log \
-    --temp-dir=/hath/tmp
+  exec $HATH_CMD
 fi

@@ -1,4 +1,5 @@
-FROM amazoncorretto:8u392-alpine3.18-jre
+ARG  JRE_VERSION
+FROM amazoncorretto:${JRE_VERSION}-alpine3.18-jre
 LABEL MAINTAINER="icearea"
 
 ARG HATH_VERSION 

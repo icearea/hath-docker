@@ -1,67 +1,52 @@
-# hath-docker    
-    
-hath-docker   
-
-在Docker容器中執行H@H客戶端
-   
-版本 :   
-H@H客戶端版本 : 1.6.2   
-   
-### Usage  
-執行以下指令來運作容器:
-```
+# Usage  
+## shell command
+```sh
 docker run \
 --name hath \
 --net host \
---user <你的UID>:<你的GID> \
--v /path/to/your/hath/cache:/hath/cache \
--v /path/to/your/hath/data:/hath/data \ 
--v /path/to/your/hath/download>:/hath/download \
--v /path/to/your/hath/log:/hath/log \
--v /path/to/your/hath/tmp:/hath/tmp \
--e HATH_CLIENT_ID=<輸入你的HATH ID> \
--e HATH_CLIENT_KEY=<輸入你的HATH KEY> \
+-v /path/to/hath/cache:/hath/cache \
+-v /path/to/hath/data:/hath/data \ 
+-v /path/to/hath/download:/hath/download \
+-v /path/to/hath/log:/hath/log \
+-v /path/to/hath/tmp:/hath/tmp \
+-e HATH_CLIENT_ID=<HATH ID> \
+-e HATH_CLIENT_KEY=<HATH KEY> \
+-e TZ=<Timezone> \
+-e PUID=<Host UID> \
+-e PGID=<Host GID> \
 -e UMASK=000 \
-cloverdefa/hath:latest
+icearea/hath:latest
 ```
-
-你也能夠使用docker-compose來運作容器:   
-
-### docker-compose.yml範例    
-```
+## docker-compose.yml
+* .yml
+```yml
 version: "3.8"
 
 services:
   hath:  
-    image: cloverdefa/hath:latest
+    image: icearea/hath:latest
     container_name: hath
-    user: ${ID}
     network_mode: host
     restart: unless-stopped
     volumes:
-      - ./cache:/hath/cache
-      - ./data:/hath/data  
-      - ./download:/hath/download
-      - ./log:/hath/log
-      - ./tmp:/hath/tmp
+      - /path/to/cache:/hath/cache
+      - /path/to/data:/hath/data  
+      - /path/to/download:/hath/download
+      - /path/to/log:/hath/log
+      - /path/to/tmp:/hath/tmp
     environment:
       HATH_CLIENT_ID: ${HATH_CLIENT_ID}
       HATH_CLIENT_KEY: ${HATH_CLIENT_KEY}
+      TZ: YOUR_TIMEZONE
+      PUID: ${HOST_UID}
+      PGID: ${HOST_GID}
       UMASK: 000
 ```
 
-### 如果你使用docker-compose來運作容器，推薦你建立.env檔案來保存你的ID以及KEY   
-.env (範例)    
-
+* .env
 ```
-ID: 1000:1000    #  變更 1000:1000 為你的 UID:GID
-HATH_CLIENT_ID: 00000    #  變更 00000 為你的 client id
-HATH_CLIENT_KEY: aaabbbccc    #  變更 aaabbbccc 為你的 client key
-
+HATH_CLIENT_ID: 00000    
+HATH_CLIENT_KEY: XxXxXxXxXxXxXxXxXxX
+HOST_UID: 1000
+HOST_GID: 1000
 ```
-變更.env檔案權限   
-chmod 600 .env   
-   
-## Docker Hub
-
-https://hub.docker.com/r/cloverdefa/hath

@@ -3,17 +3,20 @@ version: "3.8"
 services:
   hath:
     container_name: hath
-    image: cloverdefa/hath:latest
+    image: icearea/hath:latest
     restart: unless-stopped
     network_mode: host
-    user: ${ID}
+    # user: ${HOST_UID}:${HOST_GID}
     volumes:
-      - ./cache:/hath/cache
-      - ./data:/hath/data
-      - ./download:/hath/download
-      - ./log:/hath/log
-      - ./tmp:/hath/tmp
+      - /path/to/cache:/hath/cache
+      - /path/to/data:/hath/data  
+      - /path/to/download:/hath/download
+      - /path/to/log:/hath/log
+      - /path/to/tmp:/hath/tmp
     environment:
       HATH_CLIENT_ID: ${HATH_CLIENT_ID}
       HATH_CLIENT_KEY: ${HATH_CLIENT_KEY}
-      UMASK: '000'
+      TZ: YOUR_TIMEZONE
+      PUID: ${HOST_UID}
+      PGID: ${HOST_GID}
+      UMASK: 000

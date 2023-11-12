@@ -9,6 +9,7 @@ env:
   HATH_VERSION: 1.6.2
   HATH_CHECKSUM: bb21adeb38e48aeb1892b5cbe603bfeea2c1d653c3d9fafc9e1b336ec0d32dda
   DOCKERHUB_USERNAME: ${{ github.actor }}
+  JRE_VERSION: 8u392
 
 jobs:
   docker:
@@ -33,8 +34,9 @@ jobs:
           push: true
           tags: |
             ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}
-            ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}.${{ github.ref_name }}
+            ${{ env.DOCKERHUB_USERNAME }}/hath:${{ env.HATH_VERSION }}-${{ env.JRE_VERSION }}
             ${{ env.DOCKERHUB_USERNAME }}/hath:latest
           build-args: |
+            JRE_VERSION=${{ env.JRE_VERSION }}
             HATH_VERSION=${{ env.HATH_VERSION }}
             HATH_CHECKSUM=${{ env.HATH_CHECKSUM }}

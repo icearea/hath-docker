@@ -5,7 +5,7 @@ on:
     paths:
       - "start.sh"
       - "Dockerfile"
-      - ".github/workflows/release-docker-image.yaml"
+      - ".github/workflows/release-docker-image.yml"
     
 env:
   HATH_VERSION: 1.6.2

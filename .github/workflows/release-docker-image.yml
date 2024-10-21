@@ -11,7 +11,7 @@ env:
   HATH_VERSION: 1.6.3
   HATH_CHECKSUM: 55c4360fc3d635e86e08e87aebcda97aecbda3102279d41d753e7452da7c958f
   DOCKERHUB_USERNAME: ${{ github.actor }}
-  JRE_VERSION: 8u422
+  JRE_VERSION: 8u432
 
 jobs:
   docker:

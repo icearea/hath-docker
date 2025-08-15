@@ -1,5 +1,5 @@
 ARG  JRE_VERSION
-FROM amazoncorretto:${JRE_VERSION}-alpine3.19-jre
+FROM amazoncorretto:${JRE_VERSION}-alpine3.22-jre
 LABEL MAINTAINER="icearea"
 
 ARG HATH_VERSION 
@@ -27,3 +27,4 @@ VOLUME ["/hath/cache", "/hath/data", "/hath/download", "/hath/log", "/hath/tmp"]
 ENV HATH_OPT ""
 
 CMD ["/opt/hath/start.sh"]
+

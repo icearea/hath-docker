@@ -8,10 +8,10 @@ on:
       - ".github/workflows/release-docker-image.yml"
     
 env:
-  HATH_VERSION: 1.6.4
-  HATH_CHECKSUM: 25351e4b43169f0bad25abcfe7f61034f03cca08b69f219727713975dc5b03b1
+  HATH_VERSION: 1.6.5
+  HATH_CHECKSUM: a42224c24008dbf895e2d178b1fa25589715788214f7ed526d1957217aaa912e
   DOCKERHUB_USERNAME: ${{ github.actor }}
-  JRE_VERSION: 8u462
+  JRE_VERSION: 8u482
 
 jobs:
   docker:
